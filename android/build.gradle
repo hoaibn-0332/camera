@@ -17,6 +17,9 @@ rootProject.allprojects {
     repositories {
         google()
         jcenter()
+
+        maven { url 'http://raw.github.com/saki4510t/libcommon/master/repository/' }
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -43,6 +46,7 @@ android {
     dependencies {
         implementation 'androidx.annotation:annotation:1.0.0'
         implementation 'androidx.core:core:1.0.0'
+        implementation 'com.github.jiangdongguo:AndroidUSBCamera:2.3.6'
     }
     testOptions {
         unitTests.returnDefaultValues = true
