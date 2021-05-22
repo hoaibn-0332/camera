@@ -225,7 +225,6 @@ class CameraValue {
   String toString() {
     return '$runtimeType('
         'isRecordingVideo: $isRecordingVideo, '
-        'isRecordingVideo: $isRecordingVideo, '
         'isInitialized: $isInitialized, '
         'errorDescription: $errorDescription, '
         'previewSize: $previewSize, '
@@ -245,10 +244,12 @@ class CameraController extends ValueNotifier<CameraValue> {
     this.description,
     this.resolutionPreset, {
     this.enableAudio = true,
+    this.externalCamera = false
   }) : super(const CameraValue.uninitialized());
 
   final CameraDescription description;
   final ResolutionPreset resolutionPreset;
+  final bool externalCamera;
 
   /// Whether to include audio when recording a video.
   final bool enableAudio;
@@ -272,6 +273,8 @@ class CameraController extends ValueNotifier<CameraValue> {
           await _channel.invokeMapMethod<String, dynamic>(
         'initialize',
         <String, dynamic>{
+          // TODO
+          'externalCamera': externalCamera,
           'cameraName': description.name,
           'resolutionPreset': serializeResolutionPreset(resolutionPreset),
           'enableAudio': enableAudio,
